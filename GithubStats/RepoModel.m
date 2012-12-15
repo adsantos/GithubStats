@@ -9,6 +9,24 @@
 #import "RepoModel.h"
 
 @implementation RepoModel
-@synthesize name;
+@synthesize name = _name;
+@synthesize fullName = _fullName;
+@synthesize htmlUrl = _htmlUrl;
+@synthesize mainLanguage = _mainLanguage;
+@synthesize languages = _languages;
+@synthesize isFork = _isFork;
+
+-(RepoModel *)initWithName:(NSString *)name andFullName:(NSString *)fullName andHtmlUrl:(NSString *)htmlUrl andMainLanguage:(NSString *)mainLanguage andLanguages:(NSArray *)languages andIsFork:(BOOL)isFork {
+    self = [super init];
+    if (self != nil) {
+        [self setName:name];
+        [self setFullName:fullName];
+        [self setHtmlUrl:htmlUrl];
+        [self setMainLanguage:mainLanguage];
+        [self setLanguages:languages];
+        [self setIsFork:isFork];
+    }
+    return self;
+}
 
 @end

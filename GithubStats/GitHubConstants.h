@@ -13,6 +13,12 @@ typedef enum {
     SECTION_STATS
 } Sections;
 
+typedef enum {
+    ROW_REPOS,
+    ROW_LANGUAGES,
+    ROW_CONTRIBUTIONS
+} RowsStats;
+
 @interface GitHubConstants : NSObject
 
 @end

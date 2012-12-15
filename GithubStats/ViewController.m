@@ -11,6 +11,7 @@
 #import "LabelBadgeCell.h"
 #import "CustomBadge.h"
 #import "SearchTextFieldCell.h"
+#import "ReposViewController.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSArray *statsKeywords;
@@ -115,6 +116,26 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch ([indexPath row]) {
+        case ROW_REPOS:
+        {
+            ReposViewController *reposVC = [[ReposViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:reposVC animated:YES];
+            break;
+        }
+        case ROW_LANGUAGES:
+            
+            break;
+        case ROW_CONTRIBUTIONS:
+            
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

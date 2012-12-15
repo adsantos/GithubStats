@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RepoCollectionModel.h"
 
 @interface ReposViewController : UITableViewController
+@property (nonatomic, strong) RepoCollectionModel *repoCollection;
 
 @end

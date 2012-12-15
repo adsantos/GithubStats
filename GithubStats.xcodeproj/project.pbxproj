@@ -29,6 +29,8 @@
 		6DF952A4167D2473005C9C59 /* ReposViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952A3167D2473005C9C59 /* ReposViewController.m */; };
 		6DF952A9167D24C6005C9C59 /* RepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952A8167D24C6005C9C59 /* RepoModel.m */; };
 		6DF952AC167D24E1005C9C59 /* RepoCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952AB167D24E1005C9C59 /* RepoCollectionModel.m */; };
+		6DF952C1167D27BA005C9C59 /* RepoCollectionAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952C0167D27BA005C9C59 /* RepoCollectionAdapter.m */; };
+		6DF952D5167D2E41005C9C59 /* GithubStatsUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952D4167D2E41005C9C59 /* GithubStatsUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,10 @@
 		6DF952A8167D24C6005C9C59 /* RepoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoModel.m; sourceTree = "<group>"; };
 		6DF952AA167D24E1005C9C59 /* RepoCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoCollectionModel.h; sourceTree = "<group>"; };
 		6DF952AB167D24E1005C9C59 /* RepoCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoCollectionModel.m; sourceTree = "<group>"; };
+		6DF952BF167D27BA005C9C59 /* RepoCollectionAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepoCollectionAdapter.h; sourceTree = "<group>"; };
+		6DF952C0167D27BA005C9C59 /* RepoCollectionAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepoCollectionAdapter.m; sourceTree = "<group>"; };
+		6DF952D3167D2E41005C9C59 /* GithubStatsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubStatsUtil.h; sourceTree = "<group>"; };
+		6DF952D4167D2E41005C9C59 /* GithubStatsUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubStatsUtil.m; sourceTree = "<group>"; };
 		FD37BB236F6D4145A5258A77 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -163,6 +169,8 @@
 			children = (
 				6DF9528D167D08D9005C9C59 /* CustomBadge.h */,
 				6DF9528E167D08D9005C9C59 /* CustomBadge.m */,
+				6DF952D3167D2E41005C9C59 /* GithubStatsUtil.h */,
+				6DF952D4167D2E41005C9C59 /* GithubStatsUtil.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -201,6 +209,8 @@
 		6DF952AD167D2537005C9C59 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
+				6DF952BF167D27BA005C9C59 /* RepoCollectionAdapter.h */,
+				6DF952C0167D27BA005C9C59 /* RepoCollectionAdapter.m */,
 			);
 			name = Adapters;
 			sourceTree = "<group>";
@@ -302,6 +312,8 @@
 				6DF952A4167D2473005C9C59 /* ReposViewController.m in Sources */,
 				6DF952A9167D24C6005C9C59 /* RepoModel.m in Sources */,
 				6DF952AC167D24E1005C9C59 /* RepoCollectionModel.m in Sources */,
+				6DF952C1167D27BA005C9C59 /* RepoCollectionAdapter.m in Sources */,
+				6DF952D5167D2E41005C9C59 /* GithubStatsUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
