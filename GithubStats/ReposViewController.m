@@ -8,6 +8,7 @@
 
 #import "ReposViewController.h"
 #import "RepoModel.h"
+#import "ViewRepoViewController.h"
 
 @interface ReposViewController ()
 
@@ -65,6 +66,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0f];
     }
     cell.textLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] fullName];
     
@@ -114,13 +116,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    ViewRepoViewController *viewRepoVC = [[ViewRepoViewController alloc] initWithNibName:@"ViewRepoViewController" bundle:[NSBundle mainBundle]];
+    [viewRepoVC setRepoUrl:[[self.repoCollection.items objectAtIndex:[indexPath row]] htmlUrl]];
+    [self.navigationController pushViewController:viewRepoVC animated:YES];
 }
 
 -(IBAction)filterRepos:(id)sender {
