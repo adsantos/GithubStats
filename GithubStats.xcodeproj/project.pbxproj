@@ -11,6 +11,10 @@
 		6D791334167D3C7E00D0641D /* GithubWrapperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791333167D3C7E00D0641D /* GithubWrapperClient.m */; };
 		6D791336167D457900D0641D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D791335167D457900D0641D /* settings.png */; };
 		6D791339167D4A4800D0641D /* UIBarButtonItem+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791338167D4A4800D0641D /* UIBarButtonItem+Image.m */; };
+		6D79133D167DE76F00D0641D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D79133B167DE76F00D0641D /* LoginViewController.m */; };
+		6D79133E167DE76F00D0641D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D79133C167DE76F00D0641D /* LoginViewController.xib */; };
+		6D791340167DEC0800D0641D /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D79133F167DEC0800D0641D /* TextFieldCell.xib */; };
+		6D791343167DEC7800D0641D /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791342167DEC7800D0641D /* TextFieldCell.m */; };
 		6DF95247167CFCB6005C9C59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF95246167CFCB6005C9C59 /* UIKit.framework */; };
 		6DF95249167CFCB6005C9C59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF95248167CFCB6005C9C59 /* Foundation.framework */; };
 		6DF9524B167CFCB6005C9C59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF9524A167CFCB6005C9C59 /* CoreGraphics.framework */; };
@@ -43,6 +47,12 @@
 		6D791335167D457900D0641D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		6D791337167D4A4800D0641D /* UIBarButtonItem+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Image.h"; sourceTree = "<group>"; };
 		6D791338167D4A4800D0641D /* UIBarButtonItem+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Image.m"; sourceTree = "<group>"; };
+		6D79133A167DE76F00D0641D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		6D79133B167DE76F00D0641D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		6D79133C167DE76F00D0641D /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		6D79133F167DEC0800D0641D /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		6D791341167DEC7800D0641D /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
+		6D791342167DEC7800D0641D /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
 		6DF95242167CFCB6005C9C59 /* GithubStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF95246167CFCB6005C9C59 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6DF95248167CFCB6005C9C59 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -178,6 +188,9 @@
 				6DF9529F167D0FFC005C9C59 /* SearchTextFieldCell.h */,
 				6DF952A0167D0FFC005C9C59 /* SearchTextFieldCell.m */,
 				6DF95293167D0E38005C9C59 /* SearchTextFieldCell.xib */,
+				6D791341167DEC7800D0641D /* TextFieldCell.h */,
+				6D791342167DEC7800D0641D /* TextFieldCell.m */,
+				6D79133F167DEC0800D0641D /* TextFieldCell.xib */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -212,6 +225,9 @@
 				6DF95261167CFCB6005C9C59 /* ViewController.xib */,
 				6DF952A2167D2473005C9C59 /* ReposViewController.h */,
 				6DF952A3167D2473005C9C59 /* ReposViewController.m */,
+				6D79133A167DE76F00D0641D /* LoginViewController.h */,
+				6D79133B167DE76F00D0641D /* LoginViewController.m */,
+				6D79133C167DE76F00D0641D /* LoginViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -297,6 +313,8 @@
 				6DF95294167D0E38005C9C59 /* SearchTextFieldCell.xib in Resources */,
 				6DF95297167D0F4D005C9C59 /* icon-search-small.png in Resources */,
 				6D791336167D457900D0641D /* settings.png in Resources */,
+				6D79133E167DE76F00D0641D /* LoginViewController.xib in Resources */,
+				6D791340167DEC0800D0641D /* TextFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +356,8 @@
 				6DF952D5167D2E41005C9C59 /* GithubStatsUtil.m in Sources */,
 				6D791334167D3C7E00D0641D /* GithubWrapperClient.m in Sources */,
 				6D791339167D4A4800D0641D /* UIBarButtonItem+Image.m in Sources */,
+				6D79133D167DE76F00D0641D /* LoginViewController.m in Sources */,
+				6D791343167DEC7800D0641D /* TextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
