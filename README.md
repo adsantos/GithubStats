@@ -10,7 +10,7 @@ An iPhone app which searches for Github stats regarding a given user.
 3. In the home directory of this project, run pod install.
 4. Open GithubStats.xcworkspace in XCode.
 5. Run the Pods target.
-6. Run the project target.
+6. Run the projeGithubStats target.
 
 ## Usage
 
@@ -21,6 +21,11 @@ An iPhone app which searches for Github stats regarding a given user.
 5. By tapping on a specific repository, you'll see the github home page for that repository.
 6. By tapping on the first row of the main menu, you can search for other people's repositories stats and get 
 the same information as above.
+
+## Testing
+
+1. Run the Pods target.
+2. Run the GithubStatsTests target.
 
 ## Supported versions
 
