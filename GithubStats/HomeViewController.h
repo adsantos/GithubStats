@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 
-@interface ViewController : UIViewController <UITextFieldDelegate, LoginViewControllerDelegate>
+@interface HomeViewController : UIViewController <UITextFieldDelegate, LoginViewControllerDelegate>
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, weak) IBOutlet UITextView *infoTextView;
 
 -(void)refresh;
 

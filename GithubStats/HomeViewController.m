@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Adriana Santos. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "HomeViewController.h"
 #import "GitHubConstants.h"
 #import "LabelBadgeCell.h"
 #import "CustomBadge.h"
@@ -19,7 +19,7 @@
 #import "LanguageReposCollectionModel.h"
 #import "GithubStatsUtil.h"
 
-@interface ViewController ()
+@interface HomeViewController ()
 @property (nonatomic, strong) NSArray *statsKeywords;
 @property (nonatomic, strong) RepoCollectionModel *repoCollection;
 @property (nonatomic, strong) LanguageReposCollectionModel *languageReposCollection;
@@ -27,7 +27,7 @@
 @property (nonatomic) BOOL viewDidAppearBefore;
 @end
 
-@implementation ViewController
+@implementation HomeViewController
 @synthesize statsKeywords = _statsKeywords;
 @synthesize repoCollection = _repoCollection;
 @synthesize languageReposCollection = _languageReposCollection;
@@ -35,10 +35,11 @@
 @synthesize viewDidAppearBefore = _viewDidAppearBefore;
 @synthesize tableView = _tableView;
 @synthesize activityIndicator = _activityIndicator;
+@synthesize infoTextView = _infoTextView;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.statsKeywords = [NSArray arrayWithObjects:NSLocalizedString(@"Repositories",nil), NSLocalizedString(@"Languages",nil), NSLocalizedString(@"Contributions",nil), nil];
+        self.statsKeywords = [NSArray arrayWithObjects:NSLocalizedString(@"Repositories",nil), NSLocalizedString(@"Languages",nil), nil];
         self.title = NSLocalizedString(@"Home", nil);
     }
     return self;
@@ -50,6 +51,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] target:self action:@selector(settingsTapped:)];
     self.viewDidAppearBefore = NO;
+    if ([GithubStatsUtil hasCredential]) {
+        [self.infoTextView setHidden:YES];
+    }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -103,6 +107,13 @@
             break;
     }
     return numberOfRows;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == SECTION_STATS) {
+        return @"Stats";
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -192,7 +203,7 @@
         {
             ReposViewController *reposVC = [[ReposViewController alloc] initWithStyle:UITableViewStylePlain];
             [reposVC setRepoCollection:self.repoCollection];
-            [reposVC setTitle:@"Repositories"];
+            [reposVC setTitle:NSLocalizedString(@"Repositories",nil)];
             [self.navigationController pushViewController:reposVC animated:YES];
             break;
         }
@@ -225,7 +236,6 @@
     
     if ([self.searchUsername.text length] == 0) {
         self.searchUsername.text = [[GithubStatsUtil getCredential] username];
-        [self.searchUsername resignFirstResponder];
     }
     
     [self.activityIndicator startAnimating];
@@ -289,6 +299,7 @@
 
 -(void)loginViewControllerDidLoginWithCredential:(Credential *)credential {
     [GithubStatsUtil saveCredential:credential];
+    [self.infoTextView setHidden:YES];
     [self refresh];
     [self dismissViewControllerAnimated:YES completion:^{
 

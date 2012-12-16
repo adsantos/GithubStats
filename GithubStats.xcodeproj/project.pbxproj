@@ -31,8 +31,8 @@
 		6DF95259167CFCB6005C9C59 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF95258167CFCB6005C9C59 /* Default.png */; };
 		6DF9525B167CFCB6005C9C59 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF9525A167CFCB6005C9C59 /* Default@2x.png */; };
 		6DF9525D167CFCB6005C9C59 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DF9525C167CFCB6005C9C59 /* Default-568h@2x.png */; };
-		6DF95260167CFCB6005C9C59 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9525F167CFCB6005C9C59 /* ViewController.m */; };
-		6DF95263167CFCB6005C9C59 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF95261167CFCB6005C9C59 /* ViewController.xib */; };
+		6DF95260167CFCB6005C9C59 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9525F167CFCB6005C9C59 /* HomeViewController.m */; };
+		6DF95263167CFCB6005C9C59 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF95261167CFCB6005C9C59 /* HomeViewController.xib */; };
 		6DF95280167D06F3005C9C59 /* GitHubConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9527F167D06F3005C9C59 /* GitHubConstants.m */; };
 		6DF9528B167D080C005C9C59 /* LabelBadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DF9528A167D080C005C9C59 /* LabelBadgeCell.xib */; };
 		6DF9528F167D08D9005C9C59 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF9528E167D08D9005C9C59 /* CustomBadge.m */; };
@@ -49,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		5F170C59F8C6475AB15AC83A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		6D1F94E0167E7505001B5F51 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		6D791332167D3C7E00D0641D /* GithubWrapperClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubWrapperClient.h; sourceTree = "<group>"; };
 		6D791333167D3C7E00D0641D /* GithubWrapperClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubWrapperClient.m; sourceTree = "<group>"; };
 		6D791335167D457900D0641D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -84,9 +85,8 @@
 		6DF95258167CFCB6005C9C59 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6DF9525A167CFCB6005C9C59 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6DF9525C167CFCB6005C9C59 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		6DF9525E167CFCB6005C9C59 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		6DF9525F167CFCB6005C9C59 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6DF95262167CFCB6005C9C59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		6DF9525F167CFCB6005C9C59 /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		6DF95262167CFCB6005C9C59 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HomeViewController.xib; sourceTree = "<group>"; };
 		6DF9527E167D06F3005C9C59 /* GitHubConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GitHubConstants.h; sourceTree = "<group>"; };
 		6DF9527F167D06F3005C9C59 /* GitHubConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GitHubConstants.m; sourceTree = "<group>"; };
 		6DF9528A167D080C005C9C59 /* LabelBadgeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LabelBadgeCell.xib; sourceTree = "<group>"; };
@@ -239,9 +239,9 @@
 		6DF952A5167D2495005C9C59 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6DF9525E167CFCB6005C9C59 /* ViewController.h */,
-				6DF9525F167CFCB6005C9C59 /* ViewController.m */,
-				6DF95261167CFCB6005C9C59 /* ViewController.xib */,
+				6D1F94E0167E7505001B5F51 /* HomeViewController.h */,
+				6DF9525F167CFCB6005C9C59 /* HomeViewController.m */,
+				6DF95261167CFCB6005C9C59 /* HomeViewController.xib */,
 				6DF952A2167D2473005C9C59 /* ReposViewController.h */,
 				6DF952A3167D2473005C9C59 /* ReposViewController.m */,
 				6D79133A167DE76F00D0641D /* LoginViewController.h */,
@@ -337,7 +337,7 @@
 				6DF95259167CFCB6005C9C59 /* Default.png in Resources */,
 				6DF9525B167CFCB6005C9C59 /* Default@2x.png in Resources */,
 				6DF9525D167CFCB6005C9C59 /* Default-568h@2x.png in Resources */,
-				6DF95263167CFCB6005C9C59 /* ViewController.xib in Resources */,
+				6DF95263167CFCB6005C9C59 /* HomeViewController.xib in Resources */,
 				6DF9528B167D080C005C9C59 /* LabelBadgeCell.xib in Resources */,
 				6DF95294167D0E38005C9C59 /* SearchTextFieldCell.xib in Resources */,
 				6DF95297167D0F4D005C9C59 /* icon-search-small.png in Resources */,
@@ -376,7 +376,7 @@
 			files = (
 				6DF95253167CFCB6005C9C59 /* main.m in Sources */,
 				6DF95257167CFCB6005C9C59 /* AppDelegate.m in Sources */,
-				6DF95260167CFCB6005C9C59 /* ViewController.m in Sources */,
+				6DF95260167CFCB6005C9C59 /* HomeViewController.m in Sources */,
 				6DF95280167D06F3005C9C59 /* GitHubConstants.m in Sources */,
 				6DF9528F167D08D9005C9C59 /* CustomBadge.m in Sources */,
 				6DF95292167D0918005C9C59 /* LabelBadgeCell.m in Sources */,
@@ -408,12 +408,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		6DF95261167CFCB6005C9C59 /* ViewController.xib */ = {
+		6DF95261167CFCB6005C9C59 /* HomeViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6DF95262167CFCB6005C9C59 /* en */,
 			);
-			name = ViewController.xib;
+			name = HomeViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

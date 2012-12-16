@@ -25,7 +25,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.title = @"Languages";
+        self.title = NSLocalizedString(@"Languages",nil);
     }
     return self;
 }

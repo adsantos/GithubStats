@@ -11,7 +11,7 @@
 #import "TextFieldCell.h"
 #import "GithubWrapperClient.h"
 #import "GithubStatsUtil.h"
-#import "ViewController.h"
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 @property (nonatomic, weak) IBOutlet UITextField *usernameTextField;
@@ -32,6 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = NSLocalizedString(@"Login",nil);
     }
     return self;
 }
@@ -83,7 +84,7 @@
     } onFailure:^(NSError *error) {
         [self.button.titleLabel setEnabled:YES];
         [self.activityIndicator stopAnimating];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An error occurred" message:[[error userInfo] objectForKey:NSLocalizedDescriptionKey] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"An error occurred",nil) message:[[error userInfo] objectForKey:NSLocalizedDescriptionKey] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }];
     
@@ -128,7 +129,7 @@
     
     if ([indexPath row] == 0) {
         [[(TextFieldCell *)cell textField] setSecureTextEntry:NO];
-        [[(TextFieldCell *)cell textField] setPlaceholder:@"github username"];
+        [[(TextFieldCell *)cell textField] setPlaceholder:NSLocalizedString(@"github username",nil)];
         if (credential) {
             [[(TextFieldCell *)cell textField] setText:credential.username];
         }
@@ -136,7 +137,7 @@
     }
     else {
         [[(TextFieldCell *)cell textField] setSecureTextEntry:YES];
-        [[(TextFieldCell *)cell textField] setPlaceholder:@"github password"];
+        [[(TextFieldCell *)cell textField] setPlaceholder:NSLocalizedString(@"github password",nil)];
         if (credential) {
             [[(TextFieldCell *)cell textField] setText:credential.password];
         }
