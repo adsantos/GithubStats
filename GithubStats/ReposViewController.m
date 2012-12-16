@@ -64,11 +64,12 @@
     
     // Configure the cell...
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0f];
     }
-    cell.textLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] fullName];
+    cell.textLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] name];
+    cell.detailTextLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] isFork] ? @"Fork" : nil;
     
     return cell;
 }

@@ -12,7 +12,7 @@
 #import "LanguageReposModel.h"
 
 NSString* const JSON_NAME = @"name";
-NSString* const JSON_FULL_NAME = @"name";
+NSString* const JSON_FULL_NAME = @"full_name";
 NSString* const JSON_HTML_URL = @"html_url";
 NSString* const JSON_LANGUAGE = @"language";
 NSString* const JSON_LANGUAGES_URL = @"languages_url";
