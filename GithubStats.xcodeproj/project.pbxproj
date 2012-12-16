@@ -28,6 +28,8 @@
 		6D1F9516167E8586001B5F51 /* RepoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952A8167D24C6005C9C59 /* RepoModel.m */; };
 		6D1F9517167E858A001B5F51 /* RepoCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DF952AB167D24E1005C9C59 /* RepoCollectionModel.m */; };
 		6D1F9518167E858E001B5F51 /* LanguageReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791355167E0EF400D0641D /* LanguageReposModel.m */; };
+		6D1F9519167E8652001B5F51 /* GithubWrapperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791333167D3C7E00D0641D /* GithubWrapperClient.m */; };
+		6D1F951B167E8ED3001B5F51 /* repos.json in Resources */ = {isa = PBXBuildFile; fileRef = 6D1F951A167E8ED3001B5F51 /* repos.json */; };
 		6D791334167D3C7E00D0641D /* GithubWrapperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791333167D3C7E00D0641D /* GithubWrapperClient.m */; };
 		6D791336167D457900D0641D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D791335167D457900D0641D /* settings.png */; };
 		6D791339167D4A4800D0641D /* UIBarButtonItem+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791338167D4A4800D0641D /* UIBarButtonItem+Image.m */; };
@@ -81,8 +83,8 @@
 		6D1F94FF167E82D8001B5F51 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GHUnitIOS.framework; sourceTree = "<group>"; };
 		6D1F9502167E8398001B5F51 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6D1F9504167E83AC001B5F51 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		6D1F9506167E84B2001B5F51 /* TestRepoCollectionAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRepoCollectionAdapter.h; sourceTree = "<group>"; };
 		6D1F9507167E84B2001B5F51 /* TestRepoCollectionAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestRepoCollectionAdapter.m; sourceTree = "<group>"; };
+		6D1F951A167E8ED3001B5F51 /* repos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repos.json; sourceTree = "<group>"; };
 		6D791332167D3C7E00D0641D /* GithubWrapperClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubWrapperClient.h; sourceTree = "<group>"; };
 		6D791333167D3C7E00D0641D /* GithubWrapperClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubWrapperClient.m; sourceTree = "<group>"; };
 		6D791335167D457900D0641D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
@@ -177,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				6D1F94EB167E8243001B5F51 /* Supporting Files */,
-				6D1F9506167E84B2001B5F51 /* TestRepoCollectionAdapter.h */,
 				6D1F9507167E84B2001B5F51 /* TestRepoCollectionAdapter.m */,
 			);
 			path = GithubStatsTests;
@@ -186,6 +187,7 @@
 		6D1F94EB167E8243001B5F51 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D1F951A167E8ED3001B5F51 /* repos.json */,
 				6D1F94EC167E8243001B5F51 /* GithubStatsTests-Info.plist */,
 				6D1F94ED167E8243001B5F51 /* InfoPlist.strings */,
 				6D1F94F0167E8243001B5F51 /* main.m */,
@@ -431,6 +433,7 @@
 				6D1F94F7167E8243001B5F51 /* Default.png in Resources */,
 				6D1F94F9167E8243001B5F51 /* Default@2x.png in Resources */,
 				6D1F94FB167E8243001B5F51 /* Default-568h@2x.png in Resources */,
+				6D1F951B167E8ED3001B5F51 /* repos.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +491,7 @@
 				6D1F9516167E8586001B5F51 /* RepoModel.m in Sources */,
 				6D1F9517167E858A001B5F51 /* RepoCollectionModel.m in Sources */,
 				6D1F9518167E858E001B5F51 /* LanguageReposModel.m in Sources */,
+				6D1F9519167E8652001B5F51 /* GithubWrapperClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

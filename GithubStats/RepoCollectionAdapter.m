@@ -44,10 +44,11 @@ NSString* const JSON_FORK = @"fork";
         if ([GithubStatsUtil isEmpty:language]) {
             language = @"Unknown";
         }
-        NSArray *languagesUrl = [repo objectForKey:JSON_LANGUAGES_URL];
+        //TODO: use the language_url to get the list of languages
+        NSArray *languages = nil;
         BOOL fork = [[repo objectForKey:JSON_FORK] boolValue];
         
-        RepoModel *repo = [[RepoModel alloc] initWithName:name andFullName:fullName andHtmlUrl:htmlUrl andMainLanguage:language andLanguages:languagesUrl andIsFork:fork];
+        RepoModel *repo = [[RepoModel alloc] initWithName:name andFullName:fullName andHtmlUrl:htmlUrl andMainLanguage:language andLanguages:languages andIsFork:fork];
         [reposArray addObject:repo];
     }
     [repoCollection setItems:reposArray];
