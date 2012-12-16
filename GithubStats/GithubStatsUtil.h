@@ -7,9 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Credential.h"
 
 @interface GithubStatsUtil : NSObject
 
 +(BOOL)isEmpty:(id)value;
++(void)saveCredential:(Credential *)credential;
++(BOOL)hasCredential;
++(Credential *)getCredential;
+
 
 @end

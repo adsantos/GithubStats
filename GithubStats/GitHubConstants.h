@@ -21,4 +21,8 @@ typedef enum {
 
 @interface GitHubConstants : NSObject
 
+extern NSString * const GITHUB_STATS_USERNAME;
+extern NSString * const KEYCHAIN_SERVICE;
+extern NSString * const KEYCHAIN_ITEM_PASSWORD;
+
 @end

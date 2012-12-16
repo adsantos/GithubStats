@@ -15,15 +15,16 @@
 #import "GithubWrapperClient.h"
 #import "RepoCollectionAdapter.h"
 #import "UIBarButtonItem+Image.h"
-#import "LoginViewController.h"
 #import "LanguagesViewController.h"
 #import "LanguageReposCollectionModel.h"
+#import "GithubStatsUtil.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSArray *statsKeywords;
 @property (nonatomic, strong) RepoCollectionModel *repoCollection;
 @property (nonatomic, strong) LanguageReposCollectionModel *languageReposCollection;
 @property (nonatomic, strong) UITextField *searchUsername;
+@property (nonatomic) BOOL viewDidAppearBefore;
 @end
 
 @implementation ViewController
@@ -31,6 +32,7 @@
 @synthesize repoCollection = _repoCollection;
 @synthesize languageReposCollection = _languageReposCollection;
 @synthesize searchUsername = _searchUsername;
+@synthesize viewDidAppearBefore = _viewDidAppearBefore;
 @synthesize tableView = _tableView;
 @synthesize activityIndicator = _activityIndicator;
 
@@ -47,14 +49,33 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] target:self action:@selector(settingsTapped:)];
+    self.viewDidAppearBefore = NO;
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)dismissKeyboard {
+    [self.searchUsername resignFirstResponder];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
     if (selectedRow) {
         [self.tableView deselectRowAtIndexPath:selectedRow animated:YES];
     }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (!self.viewDidAppearBefore) {
+        [self refresh];
+    }
+    self.viewDidAppearBefore = YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -128,6 +149,12 @@
                 }
             }
             [[(LabelBadgeCell *)cell label] setText:[self.statsKeywords objectAtIndex:[indexPath row]]];
+            if (![GithubStatsUtil hasCredential]) {
+                [[(LabelBadgeCell *)cell label] setEnabled:NO];
+            }
+            else {
+                [[(LabelBadgeCell *)cell label] setEnabled:YES];
+            }
             
             switch ([indexPath row]) {
                 case ROW_REPOS:
@@ -157,6 +184,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath section] == SECTION_USER) {
+        return;
+    }
     switch ([indexPath row]) {
         case ROW_REPOS:
         {
@@ -184,8 +214,18 @@
 
 -(void)refresh {
     
-    if ([self.searchUsername.text length] == 0) {
+    if (![GithubStatsUtil hasCredential]) {
+        self.tableView.userInteractionEnabled = NO;
+        [self presentLogin];
         return;
+    }
+    else {
+        self.tableView.userInteractionEnabled = YES;
+    }
+    
+    if ([self.searchUsername.text length] == 0) {
+        self.searchUsername.text = [[GithubStatsUtil getCredential] username];
+        [self.searchUsername resignFirstResponder];
     }
     
     [self.activityIndicator startAnimating];
@@ -223,13 +263,18 @@
     }];
 }
 
--(IBAction)settingsTapped:(id)sender {
+-(void)presentLogin {
     LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    loginVC.delegate = self;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
     navController.navigationBar.barStyle = UIBarStyleBlack;
-    [self.navigationController presentViewController:navController animated:YES completion:^{
+    [self presentViewController:navController animated:YES completion:^{
         
     }];
+}
+
+-(IBAction)settingsTapped:(id)sender {
+    [self presentLogin];
 }
 
 #pragma mark - Text field delegate
@@ -238,6 +283,22 @@
     [textField resignFirstResponder];
     [self refresh];
     return YES;
+}
+
+#pragma mark - Login delegate
+
+-(void)loginViewControllerDidLoginWithCredential:(Credential *)credential {
+    [GithubStatsUtil saveCredential:credential];
+    [self refresh];
+    [self dismissViewControllerAnimated:YES completion:^{
+
+    }];
+}
+
+-(void)loginViewControllerDidCancel {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 @end

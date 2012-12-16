@@ -10,4 +10,8 @@
 
 @implementation GitHubConstants
 
+NSString * const GITHUB_STATS_USERNAME = @"GITHUB_STATS_USERNAME";
+NSString * const KEYCHAIN_SERVICE = @"GITHUB_STATS";
+NSString * const KEYCHAIN_ITEM_PASSWORD = @"password";
+
 @end

@@ -10,14 +10,22 @@
 #import "LoginViewController.h"
 #import "TextFieldCell.h"
 #import "GithubWrapperClient.h"
+#import "GithubStatsUtil.h"
+#import "ViewController.h"
 
 @interface LoginViewController ()
 @property (nonatomic, weak) IBOutlet UITextField *usernameTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
-
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation LoginViewController
+@synthesize usernameTextField = _usernameTextField;
+@synthesize passwordTextField = _passwordTextField;
+@synthesize activityIndicator = _activityIndicator;
+@synthesize tableView = _tableView;
+@synthesize button = _button;
+@synthesize delegate = _delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +40,26 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelTapped)];
     [self.button setBackgroundColor:[UIColor darkGrayColor]];
     self.button.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.button.layer.borderWidth = 0.5f;
     self.button.layer.cornerRadius = 10.0f;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    tap.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)dismissKeyboard {
+    [self.usernameTextField resignFirstResponder];
+    [self.passwordTextField resignFirstResponder];
+}
+
+-(void)awakeFromNib {
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,20 +68,21 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)dismiss {
-//    [super dismissViewControllerAnimated:flag completion:completion];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+-(void)cancelTapped {
+    [self.delegate loginViewControllerDidCancel];
 }
 
--(IBAction)buttonTapped:(id)sender {
-//    [self.button.titleLabel setEnabled:NO];
+-(IBAction)loginTapped:(id)sender {
+    [self.button.titleLabel setEnabled:NO];
+    [self.activityIndicator startAnimating];
     [[GithubWrapperClient sharedInstance] validUsername:self.usernameTextField.text andPassword:self.passwordTextField.text onSuccess:^{
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+        [self.button.titleLabel setEnabled:YES];
+        [self.activityIndicator stopAnimating];
+        Credential *cred = [[Credential alloc] initWithUsername:self.usernameTextField.text andPassword:self.passwordTextField.text];
+        [self.delegate loginViewControllerDidLoginWithCredential:cred];
     } onFailure:^(NSError *error) {
+        [self.button.titleLabel setEnabled:YES];
+        [self.activityIndicator stopAnimating];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An error occurred" message:[[error userInfo] objectForKey:NSLocalizedDescriptionKey] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }];
@@ -96,14 +120,26 @@
             }
         }
     }
+    
+    Credential *credential = nil;
+    if ([GithubStatsUtil hasCredential]) {
+        credential = [GithubStatsUtil getCredential];
+    }
+    
     if ([indexPath row] == 0) {
         [[(TextFieldCell *)cell textField] setSecureTextEntry:NO];
         [[(TextFieldCell *)cell textField] setPlaceholder:@"github username"];
+        if (credential) {
+            [[(TextFieldCell *)cell textField] setText:credential.username];
+        }
         self.usernameTextField = [(TextFieldCell *)cell textField];
     }
     else {
         [[(TextFieldCell *)cell textField] setSecureTextEntry:YES];
         [[(TextFieldCell *)cell textField] setPlaceholder:@"github password"];
+        if (credential) {
+            [[(TextFieldCell *)cell textField] setText:credential.password];
+        }
         self.passwordTextField = [(TextFieldCell *)cell textField];
     }
     
