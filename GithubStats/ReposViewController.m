@@ -67,9 +67,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0f];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:12.0f];
     }
     cell.textLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] name];
-    cell.detailTextLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] isFork] ? @"Fork" : nil;
+    cell.detailTextLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] isFork] ? @"fork" : nil;
     
     return cell;
 }

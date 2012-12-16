@@ -102,7 +102,7 @@
                 {
                     if([currentObject isKindOfClass:[UITableViewCell class]])
                     {
-                        cell = (LabelBadgeCell *)currentObject;
+                        cell = (SearchTextFieldCell *)currentObject;
                         break;
                     }
                 }

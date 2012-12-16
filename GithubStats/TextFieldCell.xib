@@ -33,7 +33,7 @@
 			</object>
 			<object class="IBUITableViewCell" id="52484939">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">290</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIView" id="995872965">
 						<reference key="NSNextResponder" ref="52484939"/>
@@ -41,11 +41,10 @@
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUITextField" id="780814928">
 								<reference key="NSNextResponder" ref="995872965"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">290</int>
 								<string key="NSFrame">{{20, 7}, {280, 30}}</string>
 								<reference key="NSSuperview" ref="995872965"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -66,6 +65,7 @@
 									<bool key="IBUIEnablesReturnKeyAutomatically">YES</bool>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
+								<int key="IBUIClearButtonMode">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">14</double>
