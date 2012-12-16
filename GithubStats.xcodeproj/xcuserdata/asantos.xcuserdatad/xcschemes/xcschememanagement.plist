@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>GithubStatsTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6D1F94E4167E8242001B5F51</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6DF95241167CFCB6005C9C59</key>
 		<dict>
 			<key>primary</key>
