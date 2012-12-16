@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "RepoCollectionModel.h"
+#import "LanguageReposCollectionModel.h"
 
 @interface RepoCollectionAdapter : NSObject
 
 +(RepoCollectionModel *)transform:(id)response;
++(LanguageReposCollectionModel *)transformRepoCollection:(RepoCollectionModel *)repoCollectionModel;
 
 @end

@@ -28,6 +28,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismissViewControllerAnimated:completion:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +38,7 @@
 }
 
 -(IBAction)buttonTapped:(id)sender {
+//    [self.button.titleLabel setEnabled:NO];
     
 }
 

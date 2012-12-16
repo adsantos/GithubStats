@@ -15,15 +15,20 @@
 #import "GithubWrapperClient.h"
 #import "RepoCollectionAdapter.h"
 #import "UIBarButtonItem+Image.h"
+#import "LoginViewController.h"
+#import "LanguagesViewController.h"
+#import "LanguageReposCollectionModel.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSArray *statsKeywords;
 @property (nonatomic, strong) RepoCollectionModel *repoCollection;
+@property (nonatomic, strong) LanguageReposCollectionModel *languageReposCollection;
 @end
 
 @implementation ViewController
 @synthesize statsKeywords = _statsKeywords;
 @synthesize repoCollection = _repoCollection;
+@synthesize languageReposCollection = _languageReposCollection;
 @synthesize tableView = _tableView;
 @synthesize activityIndicator = _activityIndicator;
 
@@ -39,7 +44,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] target:self action:nil];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] target:self action:@selector(settingsTapped:)];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -117,8 +123,20 @@
                 }
             }
             [[(LabelBadgeCell *)cell label] setText:[self.statsKeywords objectAtIndex:[indexPath row]]];
-            [[(LabelBadgeCell *)cell customBadge] autoBadgeSizeWithString:[NSString stringWithFormat:@"%d", [self.repoCollection.items count]]];
-            [(LabelBadgeCell *)cell layoutBadge];
+            
+            switch ([indexPath row]) {
+                case ROW_REPOS:
+                    [[(LabelBadgeCell *)cell customBadge] autoBadgeSizeWithString:[NSString stringWithFormat:@"%d", [self.repoCollection.items count]]];
+                    [(LabelBadgeCell *)cell layoutBadge];
+                    break;
+                case ROW_LANGUAGES:
+                    [[(LabelBadgeCell *)cell customBadge] autoBadgeSizeWithString:[NSString stringWithFormat:@"%d", [self.languageReposCollection.items count]]];
+                    [(LabelBadgeCell *)cell layoutBadge];
+                    break;
+                default:
+                    break;
+            }
+            
 
 //            If search is nil or search result fails, disable stats
 //            [(LabelBadgeCell *)cell setUserInteractionEnabled:NO];
@@ -137,14 +155,19 @@
     switch ([indexPath row]) {
         case ROW_REPOS:
         {
-            ReposViewController *reposVC = [[ReposViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            ReposViewController *reposVC = [[ReposViewController alloc] initWithStyle:UITableViewStylePlain];
             [reposVC setRepoCollection:self.repoCollection];
+            [reposVC setTitle:@"Repositories"];
             [self.navigationController pushViewController:reposVC animated:YES];
             break;
         }
         case ROW_LANGUAGES:
-            
+        {
+            LanguagesViewController *languagesVC = [[LanguagesViewController alloc] initWithNibName:@"LanguagesViewController" bundle:[NSBundle mainBundle]];
+            [languagesVC setLanguageReposCollection:self.languageReposCollection];
+            [self.navigationController pushViewController:languagesVC animated:YES];
             break;
+        }
         case ROW_CONTRIBUTIONS:
             
             break;
@@ -157,6 +180,7 @@
 -(void)refresh {
     [self.activityIndicator startAnimating];
     self.repoCollection = nil;
+    self.languageReposCollection = nil;
     
     if (![[GithubWrapperClient sharedInstance] credential]) {
         Credential *credential = [[Credential alloc] initWithUsername:@"github-objc" andPassword:@"passw0rd"];
@@ -164,12 +188,22 @@
     }
     
     [[GithubWrapperClient sharedInstance] getAllReposForUser:@"adsantos" withReposPerPage:100 onSuccess:^(AFHTTPRequestOperation *request, id reponse, BOOL isFinished) {
-        [self.tableView reloadData];
         self.repoCollection = [RepoCollectionAdapter transform:reponse];
+        self.languageReposCollection = [RepoCollectionAdapter transformRepoCollection:self.repoCollection];
+        [self.tableView reloadData];
         [self.activityIndicator stopAnimating];
     } onFailure:^(NSError *error) {
         NSLog(@"getAllReposForUser failed with error: %@", error.description);
         [self.activityIndicator stopAnimating];
+    }];
+}
+
+-(IBAction)settingsTapped:(id)sender {
+    LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+    navController.navigationBar.barStyle = UIBarStyleBlack;
+    [self.navigationController presentViewController:navController animated:YES completion:^{
+        
     }];
 }
 

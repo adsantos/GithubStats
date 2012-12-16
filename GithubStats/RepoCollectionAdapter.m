@@ -9,6 +9,7 @@
 #import "RepoCollectionAdapter.h"
 #import "RepoModel.h"
 #import "GithubStatsUtil.h"
+#import "LanguageReposModel.h"
 
 NSString* const JSON_NAME = @"name";
 NSString* const JSON_FULL_NAME = @"name";
@@ -41,7 +42,7 @@ NSString* const JSON_FORK = @"fork";
         NSString *htmlUrl = [repo objectForKey:JSON_HTML_URL];
         NSString *language = [repo objectForKey:JSON_LANGUAGE];
         if ([GithubStatsUtil isEmpty:language]) {
-            language = @"Not available";
+            language = @"Unknown";
         }
         NSArray *languagesUrl = [repo objectForKey:JSON_LANGUAGES_URL];
         BOOL fork = [[repo objectForKey:JSON_FORK] boolValue];
@@ -52,6 +53,38 @@ NSString* const JSON_FORK = @"fork";
     [repoCollection setItems:reposArray];
     
     return repoCollection;
+}
+
++(LanguageReposCollectionModel *)transformRepoCollection:(RepoCollectionModel *)repoCollectionModel {
+    LanguageReposCollectionModel *result = [[LanguageReposCollectionModel alloc] init];
+    
+    NSMutableDictionary *languageReposDic = [[NSMutableDictionary alloc] init];
+    
+    for (RepoModel *repo in repoCollectionModel.items) {
+        RepoCollectionModel *repoCollectionForLanguage = [languageReposDic objectForKey:repo.mainLanguage];
+        if (repoCollectionForLanguage) {
+            NSMutableArray *collectionItemsMutable = [repoCollectionForLanguage.items mutableCopy];
+            [collectionItemsMutable addObject:repo];
+            repoCollectionForLanguage.items = collectionItemsMutable;
+        }
+        else {
+            repoCollectionForLanguage = [[RepoCollectionModel alloc] init];
+            repoCollectionForLanguage.items = [NSArray arrayWithObject:repo];
+        }
+        [languageReposDic setObject:repoCollectionForLanguage forKey:repo.mainLanguage];
+    }
+    
+    NSArray *languagesArray = [[languageReposDic allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:[languagesArray count]];
+    
+    for (NSString *language in languagesArray) {
+        LanguageReposModel *languageRepos = [[LanguageReposModel alloc] initWithLanguage:language andRepos:[languageReposDic objectForKey:language]];
+        [items addObject:languageRepos];
+    }
+    result.items = items;
+    
+    return result;
 }
 
 @end

@@ -15,6 +15,10 @@
 		6D79133E167DE76F00D0641D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D79133C167DE76F00D0641D /* LoginViewController.xib */; };
 		6D791340167DEC0800D0641D /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D79133F167DEC0800D0641D /* TextFieldCell.xib */; };
 		6D791343167DEC7800D0641D /* TextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791342167DEC7800D0641D /* TextFieldCell.m */; };
+		6D791351167E0DA300D0641D /* LanguagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D79134F167E0DA300D0641D /* LanguagesViewController.m */; };
+		6D791352167E0DA300D0641D /* LanguagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D791350167E0DA300D0641D /* LanguagesViewController.xib */; };
+		6D791356167E0EF400D0641D /* LanguageReposModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791355167E0EF400D0641D /* LanguageReposModel.m */; };
+		6D791359167E10DE00D0641D /* LanguageReposCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791358167E10DE00D0641D /* LanguageReposCollectionModel.m */; };
 		6DF95247167CFCB6005C9C59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF95246167CFCB6005C9C59 /* UIKit.framework */; };
 		6DF95249167CFCB6005C9C59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF95248167CFCB6005C9C59 /* Foundation.framework */; };
 		6DF9524B167CFCB6005C9C59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF9524A167CFCB6005C9C59 /* CoreGraphics.framework */; };
@@ -53,6 +57,13 @@
 		6D79133F167DEC0800D0641D /* TextFieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		6D791341167DEC7800D0641D /* TextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldCell.h; sourceTree = "<group>"; };
 		6D791342167DEC7800D0641D /* TextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldCell.m; sourceTree = "<group>"; };
+		6D79134E167E0DA300D0641D /* LanguagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguagesViewController.h; sourceTree = "<group>"; };
+		6D79134F167E0DA300D0641D /* LanguagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguagesViewController.m; sourceTree = "<group>"; };
+		6D791350167E0DA300D0641D /* LanguagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LanguagesViewController.xib; sourceTree = "<group>"; };
+		6D791354167E0EF400D0641D /* LanguageReposModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageReposModel.h; sourceTree = "<group>"; };
+		6D791355167E0EF400D0641D /* LanguageReposModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageReposModel.m; sourceTree = "<group>"; };
+		6D791357167E10DE00D0641D /* LanguageReposCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageReposCollectionModel.h; sourceTree = "<group>"; };
+		6D791358167E10DE00D0641D /* LanguageReposCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageReposCollectionModel.m; sourceTree = "<group>"; };
 		6DF95242167CFCB6005C9C59 /* GithubStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF95246167CFCB6005C9C59 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6DF95248167CFCB6005C9C59 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -228,6 +239,9 @@
 				6D79133A167DE76F00D0641D /* LoginViewController.h */,
 				6D79133B167DE76F00D0641D /* LoginViewController.m */,
 				6D79133C167DE76F00D0641D /* LoginViewController.xib */,
+				6D79134E167E0DA300D0641D /* LanguagesViewController.h */,
+				6D79134F167E0DA300D0641D /* LanguagesViewController.m */,
+				6D791350167E0DA300D0641D /* LanguagesViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -239,6 +253,10 @@
 				6DF952A8167D24C6005C9C59 /* RepoModel.m */,
 				6DF952AA167D24E1005C9C59 /* RepoCollectionModel.h */,
 				6DF952AB167D24E1005C9C59 /* RepoCollectionModel.m */,
+				6D791354167E0EF400D0641D /* LanguageReposModel.h */,
+				6D791355167E0EF400D0641D /* LanguageReposModel.m */,
+				6D791357167E10DE00D0641D /* LanguageReposCollectionModel.h */,
+				6D791358167E10DE00D0641D /* LanguageReposCollectionModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -315,6 +333,7 @@
 				6D791336167D457900D0641D /* settings.png in Resources */,
 				6D79133E167DE76F00D0641D /* LoginViewController.xib in Resources */,
 				6D791340167DEC0800D0641D /* TextFieldCell.xib in Resources */,
+				6D791352167E0DA300D0641D /* LanguagesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +377,9 @@
 				6D791339167D4A4800D0641D /* UIBarButtonItem+Image.m in Sources */,
 				6D79133D167DE76F00D0641D /* LoginViewController.m in Sources */,
 				6D791343167DEC7800D0641D /* TextFieldCell.m in Sources */,
+				6D791351167E0DA300D0641D /* LanguagesViewController.m in Sources */,
+				6D791356167E0EF400D0641D /* LanguageReposModel.m in Sources */,
+				6D791359167E10DE00D0641D /* LanguageReposCollectionModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

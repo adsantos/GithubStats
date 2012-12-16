@@ -21,7 +21,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        self.tableView.backgroundColor = [UIColor colorWithRed:211.0f/255.0f green:217.0f/255.0f blue:226.0f/255.0f alpha:1.0f];
     }
     return self;
 }
@@ -35,7 +34,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"Repositories";
+//    self.title = @"Repositories";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered target:self action:@selector(filterRepos:)];
 }
 
