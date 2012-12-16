@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3C89A9AEF2E641ECA24248E5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD37BB236F6D4145A5258A77 /* libPods.a */; };
+		6D791334167D3C7E00D0641D /* GithubWrapperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791333167D3C7E00D0641D /* GithubWrapperClient.m */; };
+		6D791336167D457900D0641D /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D791335167D457900D0641D /* settings.png */; };
+		6D791339167D4A4800D0641D /* UIBarButtonItem+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D791338167D4A4800D0641D /* UIBarButtonItem+Image.m */; };
 		6DF95247167CFCB6005C9C59 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF95246167CFCB6005C9C59 /* UIKit.framework */; };
 		6DF95249167CFCB6005C9C59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF95248167CFCB6005C9C59 /* Foundation.framework */; };
 		6DF9524B167CFCB6005C9C59 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF9524A167CFCB6005C9C59 /* CoreGraphics.framework */; };
@@ -35,6 +38,11 @@
 
 /* Begin PBXFileReference section */
 		5F170C59F8C6475AB15AC83A /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		6D791332167D3C7E00D0641D /* GithubWrapperClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GithubWrapperClient.h; sourceTree = "<group>"; };
+		6D791333167D3C7E00D0641D /* GithubWrapperClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GithubWrapperClient.m; sourceTree = "<group>"; };
+		6D791335167D457900D0641D /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		6D791337167D4A4800D0641D /* UIBarButtonItem+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Image.h"; sourceTree = "<group>"; };
+		6D791338167D4A4800D0641D /* UIBarButtonItem+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Image.m"; sourceTree = "<group>"; };
 		6DF95242167CFCB6005C9C59 /* GithubStats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubStats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF95246167CFCB6005C9C59 /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6DF95248167CFCB6005C9C59 /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,6 +98,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D791331167D3B7800D0641D /* Shared Instances */ = {
+			isa = PBXGroup;
+			children = (
+				6D791332167D3C7E00D0641D /* GithubWrapperClient.h */,
+				6D791333167D3C7E00D0641D /* GithubWrapperClient.m */,
+			);
+			name = "Shared Instances";
+			sourceTree = "<group>";
+		};
 		6DF95237167CFCB6005C9C59 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +139,7 @@
 		6DF9524C167CFCB6005C9C59 /* GithubStats */ = {
 			isa = PBXGroup;
 			children = (
+				6D791331167D3B7800D0641D /* Shared Instances */,
 				6DF952AD167D2537005C9C59 /* Adapters */,
 				6DF952A6167D249D005C9C59 /* Models */,
 				6DF952A5167D2495005C9C59 /* Controllers */,
@@ -171,6 +189,8 @@
 				6DF9528E167D08D9005C9C59 /* CustomBadge.m */,
 				6DF952D3167D2E41005C9C59 /* GithubStatsUtil.h */,
 				6DF952D4167D2E41005C9C59 /* GithubStatsUtil.m */,
+				6D791337167D4A4800D0641D /* UIBarButtonItem+Image.h */,
+				6D791338167D4A4800D0641D /* UIBarButtonItem+Image.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -178,6 +198,7 @@
 		6DF95295167D0F3E005C9C59 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6D791335167D457900D0641D /* settings.png */,
 				6DF95296167D0F4D005C9C59 /* icon-search-small.png */,
 			);
 			name = Images;
@@ -275,6 +296,7 @@
 				6DF9528B167D080C005C9C59 /* LabelBadgeCell.xib in Resources */,
 				6DF95294167D0E38005C9C59 /* SearchTextFieldCell.xib in Resources */,
 				6DF95297167D0F4D005C9C59 /* icon-search-small.png in Resources */,
+				6D791336167D457900D0641D /* settings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +336,8 @@
 				6DF952AC167D24E1005C9C59 /* RepoCollectionModel.m in Sources */,
 				6DF952C1167D27BA005C9C59 /* RepoCollectionAdapter.m in Sources */,
 				6DF952D5167D2E41005C9C59 /* GithubStatsUtil.m in Sources */,
+				6D791334167D3C7E00D0641D /* GithubWrapperClient.m in Sources */,
+				6D791339167D4A4800D0641D /* UIBarButtonItem+Image.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

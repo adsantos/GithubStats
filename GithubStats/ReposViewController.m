@@ -7,6 +7,7 @@
 //
 
 #import "ReposViewController.h"
+#import "RepoModel.h"
 
 @interface ReposViewController ()
 
@@ -59,14 +60,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.textLabel.text = [self.repoCollection.items objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [(RepoModel *)[self.repoCollection.items objectAtIndex:[indexPath row]] fullName];
     
     return cell;
 }

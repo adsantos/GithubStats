@@ -40,7 +40,7 @@ NSString* const JSON_FORK = @"fork";
         NSString *fullName = [repo objectForKey:JSON_FULL_NAME];
         NSString *htmlUrl = [repo objectForKey:JSON_HTML_URL];
         NSString *language = [repo objectForKey:JSON_LANGUAGE];
-        if ([language length] == 0) {
+        if ([GithubStatsUtil isEmpty:language]) {
             language = @"Not available";
         }
         NSArray *languagesUrl = [repo objectForKey:JSON_LANGUAGES_URL];

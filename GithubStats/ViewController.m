@@ -12,13 +12,20 @@
 #import "CustomBadge.h"
 #import "SearchTextFieldCell.h"
 #import "ReposViewController.h"
+#import "GithubWrapperClient.h"
+#import "RepoCollectionAdapter.h"
+#import "UIBarButtonItem+Image.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) NSArray *statsKeywords;
+@property (nonatomic, strong) RepoCollectionModel *repoCollection;
 @end
 
 @implementation ViewController
 @synthesize statsKeywords = _statsKeywords;
+@synthesize repoCollection = _repoCollection;
+@synthesize tableView = _tableView;
+@synthesize activityIndicator = _activityIndicator;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -32,6 +39,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"] target:self action:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    NSIndexPath *selectedRow = [self.tableView indexPathForSelectedRow];
+    if (selectedRow) {
+        [self.tableView deselectRowAtIndexPath:selectedRow animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,7 +117,7 @@
                 }
             }
             [[(LabelBadgeCell *)cell label] setText:[self.statsKeywords objectAtIndex:[indexPath row]]];
-            [[(LabelBadgeCell *)cell customBadge] autoBadgeSizeWithString:@"0"];
+            [[(LabelBadgeCell *)cell customBadge] autoBadgeSizeWithString:[NSString stringWithFormat:@"%d", [self.repoCollection.items count]]];
             [(LabelBadgeCell *)cell layoutBadge];
 
 //            If search is nil or search result fails, disable stats
@@ -123,6 +138,7 @@
         case ROW_REPOS:
         {
             ReposViewController *reposVC = [[ReposViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [reposVC setRepoCollection:self.repoCollection];
             [self.navigationController pushViewController:reposVC animated:YES];
             break;
         }
@@ -136,6 +152,25 @@
         default:
             break;
     }
+}
+
+-(void)refresh {
+    [self.activityIndicator startAnimating];
+    self.repoCollection = nil;
+    
+    if (![[GithubWrapperClient sharedInstance] credential]) {
+        Credential *credential = [[Credential alloc] initWithUsername:@"github-objc" andPassword:@"passw0rd"];
+        [[GithubWrapperClient sharedInstance] setCredential:credential];
+    }
+    
+    [[GithubWrapperClient sharedInstance] getAllReposForUser:@"adsantos" withReposPerPage:100 onSuccess:^(AFHTTPRequestOperation *request, id reponse, BOOL isFinished) {
+        [self.tableView reloadData];
+        self.repoCollection = [RepoCollectionAdapter transform:reponse];
+        [self.activityIndicator stopAnimating];
+    } onFailure:^(NSError *error) {
+        NSLog(@"getAllReposForUser failed with error: %@", error.description);
+        [self.activityIndicator stopAnimating];
+    }];
 }
 
 @end
