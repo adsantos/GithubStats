@@ -1,23 +1,30 @@
 GithubStats
 ===========
 
-An iPhone app which searches for Github stats regarding a given user
+An iPhone app which searches for Github stats regarding a given user.
 
 ## Installation
 
-TODO
+1. Install [CocoaPods](http://cocoapods.org).
+2. Clone this project.
+3. In the home directory of this project, run pod install.
+4. Open GithubStats.xcworkspace in XCode.
+5. Run the Pods target.
+6. Run the project target.
 
 ## Usage
 
-TODO
-
-## Examples
-
-TODO
+1. Set your github username and password.
+2. You'll then see the number of repositories you have and the main languages you use in your repositories.
+3. By tapping on repositories, you'll see a list of the repositories and if they are a fork or not.
+4. By tapping on languages, you'll see a list of the repositories that match that language.
+5. By tapping on a specific repository, you'll see the github home page for that repository.
+6. By tapping on the first row of the main menu, you can search for other people's repositories stats and get 
+the same information as above.
 
 ## Supported versions
 
-TODO
+iOS 5+
 
 ## Contributing
 
