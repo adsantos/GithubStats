@@ -23,12 +23,14 @@
 @property (nonatomic, strong) NSArray *statsKeywords;
 @property (nonatomic, strong) RepoCollectionModel *repoCollection;
 @property (nonatomic, strong) LanguageReposCollectionModel *languageReposCollection;
+@property (nonatomic, strong) UITextField *searchUsername;
 @end
 
 @implementation ViewController
 @synthesize statsKeywords = _statsKeywords;
 @synthesize repoCollection = _repoCollection;
 @synthesize languageReposCollection = _languageReposCollection;
+@synthesize searchUsername = _searchUsername;
 @synthesize tableView = _tableView;
 @synthesize activityIndicator = _activityIndicator;
 
@@ -60,6 +62,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Table view delegate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -102,8 +106,9 @@
                         break;
                     }
                 }
+                self.searchUsername = [(SearchTextFieldCell *)cell searchUser];
             }
-            
+            [[(SearchTextFieldCell *)cell searchUser] setDelegate:self];
             break;
         }
         case SECTION_STATS:
@@ -178,22 +183,42 @@
 }
 
 -(void)refresh {
+    
+    if ([self.searchUsername.text length] == 0) {
+        return;
+    }
+    
     [self.activityIndicator startAnimating];
     self.repoCollection = nil;
     self.languageReposCollection = nil;
+    [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:SECTION_STATS] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     if (![[GithubWrapperClient sharedInstance] credential]) {
         Credential *credential = [[Credential alloc] initWithUsername:@"github-objc" andPassword:@"passw0rd"];
         [[GithubWrapperClient sharedInstance] setCredential:credential];
     }
     
-    [[GithubWrapperClient sharedInstance] getAllReposForUser:@"adsantos" withReposPerPage:100 onSuccess:^(AFHTTPRequestOperation *request, id reponse, BOOL isFinished) {
-        self.repoCollection = [RepoCollectionAdapter transform:reponse];
-        self.languageReposCollection = [RepoCollectionAdapter transformRepoCollection:self.repoCollection];
-        [self.tableView reloadData];
-        [self.activityIndicator stopAnimating];
+    [[GithubWrapperClient sharedInstance] getAllReposForUser:self.searchUsername.text withReposPerPage:100 onSuccess:^(AFHTTPRequestOperation *request, id response, BOOL isFinished) {
+        
+        RepoCollectionModel *responseRepoCollection = [RepoCollectionAdapter transform:response];
+        NSMutableArray *existingRepos = [self.repoCollection.items mutableCopy];
+        if (!existingRepos) {
+            existingRepos = [[NSMutableArray alloc] init];
+        }
+        [existingRepos addObjectsFromArray:responseRepoCollection.items];
+        if (!self.repoCollection) {
+            self.repoCollection = [[RepoCollectionModel alloc] init];
+        }
+        self.repoCollection.items = existingRepos;
+        if (isFinished) {
+            self.languageReposCollection = [RepoCollectionAdapter transformRepoCollection:self.repoCollection];
+            [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:SECTION_STATS] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.activityIndicator stopAnimating];
+        }
     } onFailure:^(NSError *error) {
         NSLog(@"getAllReposForUser failed with error: %@", error.description);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"An error occurred" message:[error.userInfo objectForKey:NSLocalizedDescriptionKey] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
         [self.activityIndicator stopAnimating];
     }];
 }
@@ -205,6 +230,14 @@
     [self.navigationController presentViewController:navController animated:YES completion:^{
         
     }];
+}
+
+#pragma mark - Text field delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self refresh];
+    return YES;
 }
 
 @end
